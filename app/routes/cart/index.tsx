@@ -14,7 +14,7 @@ function CartItem(data: []) {
   return (
     <div>
       <ul>
-        {data.map((item) => (
+        {data.map((item: any) => (
           <li>{item.name}</li>
         ))}
       </ul>

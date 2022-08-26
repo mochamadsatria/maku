@@ -9,13 +9,19 @@ import {
 } from "@remix-run/react";
 import { useEffect } from "react";
 
-import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 import styles from "./styles/app.css";
+import app from "./firebase";
 
 export function links() {
-  return [{ rel: "stylesheet", href: styles }];
+  return [
+    { rel: "stylesheet", href: styles },
+    {
+      rel: "stylesheet",
+      href: "https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css",
+    },
+  ];
 }
 
 export const meta: MetaFunction = () => ({
@@ -26,20 +32,6 @@ export const meta: MetaFunction = () => ({
 
 export default function App() {
   useEffect(() => {
-    const firebaseConfig = {
-      apiKey: "AIzaSyD0C5va07srXUGB_mpfBlB5eXWU-0ziCuk",
-      authDomain: "maku-a77ea.firebaseapp.com",
-      databaseURL:
-        "https://maku-a77ea-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "maku-a77ea",
-      storageBucket: "maku-a77ea.appspot.com",
-      messagingSenderId: "1043419372238",
-      appId: "1:1043419372238:web:80e0a71d0fffa3adf68e9f",
-      measurementId: "G-TB0LC5WHWQ",
-    };
-
-    const app = initializeApp(firebaseConfig);
-
     getAnalytics(app);
   }, []);
 
@@ -50,6 +42,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

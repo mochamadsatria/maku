@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Button from "../button";
 
 type AuthWithEmailAndPasswordInput = {
   email: string;
@@ -74,14 +75,9 @@ export default function AuthForm({
               )}
             </div>
 
-            <motion.button
-              type="submit"
-              disabled={!isClient}
-              whileTap={{ scale: 0.9 }}
-              className="text-lg font-bold py-2 bg-orange-300 disabled:bg-neutral-300"
-            >
+            <Button disabled={!isClient} type="submit">
               {title}
-            </motion.button>
+            </Button>
           </fieldset>
         </form>
       </div>
