@@ -5,7 +5,7 @@ import {
   faSignOut,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "@remix-run/react";
+import { Link, useNavigate } from "@remix-run/react";
 import { Menu } from "@headlessui/react";
 import { getAuth, signOut } from "firebase/auth";
 import Button from "./button";
@@ -25,6 +25,8 @@ function useWindowSize() {
 }
 
 export default function Navbar({ backTo }: { backTo?: string }) {
+  const navigate = useNavigate();
+
   const auth = getAuth();
 
   const [width, height] = useWindowSize();
@@ -131,7 +133,9 @@ export default function Navbar({ backTo }: { backTo?: string }) {
                         } flex items-center gap-3  px-4 py-2`}
                         onClick={() => {
                           const auth = getAuth();
-                          signOut(auth);
+                          signOut(auth).then(() => {
+                            navigate("/");
+                          });
                         }}
                       >
                         Logout&nbsp;

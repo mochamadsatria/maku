@@ -1,4 +1,5 @@
-import { MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from "@remix-run/node";
+import { useNavigate } from "@remix-run/react";
 import {
   getAuth,
   setPersistence,
@@ -8,7 +9,7 @@ import {
 import { doc, getFirestore, serverTimestamp, setDoc } from "firebase/firestore";
 import { useState } from "react";
 import AuthForm from "~/components/auth/form";
-import Footer from "~/components/footer";
+
 import Navbar from "~/components/navbar";
 
 export const meta: MetaFunction = () => ({
@@ -17,6 +18,8 @@ export const meta: MetaFunction = () => ({
 
 export default function Register() {
   const [error, setError] = useState<Error>();
+
+  const navigate = useNavigate();
 
   const onSubmit = (data: any) => {
     const auth = getAuth();
@@ -35,6 +38,9 @@ export default function Register() {
             registerAt: serverTimestamp(),
           });
         });
+      })
+      .then(() => {
+        navigate("/");
       })
       .catch((e) => {
         setError(e);

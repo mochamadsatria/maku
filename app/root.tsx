@@ -19,6 +19,7 @@ import { dom } from "@fortawesome/fontawesome-svg-core";
 export function links() {
   return [
     { rel: "manifest", href: "/site.webmanifest" },
+
     { rel: "stylesheet", href: styles },
     {
       rel: "stylesheet",
@@ -42,7 +43,7 @@ function App() {
     <html lang="en">
       <head>
         <Meta />
-        <style>{dom.css()}</style>
+
         <Links />
       </head>
       <body>

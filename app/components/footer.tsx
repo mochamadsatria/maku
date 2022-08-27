@@ -15,7 +15,7 @@ export default function Footer() {
 
           <div className="border-4 border-dashed border-brand-green p-10">
             <h2 className="text-2xl font-semibold">Fact</h2>
-            <p className="w-full lg:w-1/3 text-justify">
+            <div className="w-full lg:w-1/3 text-justify">
               There are over 192 million people that do not have enough food to
               eat everyday according to what PBB reported. Especially with
               Covid-19 and war going on, it has been getting worse. It is
@@ -27,7 +27,7 @@ export default function Footer() {
               <div className="mt-3">
                 <Button>Learn more</Button>
               </div>
-            </p>
+            </div>
           </div>
         </div>
       </div>

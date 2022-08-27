@@ -8,6 +8,7 @@ import {
   getDoc,
   setDoc,
   serverTimestamp,
+  increment,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Button from "~/components/button";
@@ -52,7 +53,9 @@ export default function Page() {
       docRef,
       {
         addedAt: serverTimestamp(),
-        pcs: 1,
+        pcs: increment(1),
+        productId: params.productId,
+        restaurantId: params.restaurantId,
       },
       {
         merge: true,

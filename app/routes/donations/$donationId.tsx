@@ -21,6 +21,8 @@ export default function Page() {
 
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
 
+  const [takeAway, setTakeAway] = useState<boolean>(false);
+
   const params = useParams();
 
   useEffect(() => {
@@ -41,6 +43,11 @@ export default function Page() {
     <div className="overflow-hidden max-h-screen relative">
       <div className="relative z-40">
         <Navbar backTo="/donations" />
+        {takeAway && (
+          <span className="bg-red-200 py-2 px-4 flex justify-center ">
+            <span>This is the end of available operations: Takeaway!</span>
+          </span>
+        )}
       </div>
 
       {data && (
@@ -90,7 +97,7 @@ export default function Page() {
                       {data.stock}
                     </span>
                   </span>
-                  <Button>Takeaway</Button>
+                  <Button onClick={() => setTakeAway(true)}>Takeaway</Button>
                 </div>
               </div>
             </div>
