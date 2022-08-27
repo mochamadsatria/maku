@@ -3,7 +3,7 @@ import Button from "~/components/button";
 import Navbar from "~/components/navbar";
 
 import { aleaRNGFactory } from "number-generator";
-import { doc, getFirestore, setDoc } from "firebase/firestore";
+import { doc, GeoPoint, getFirestore, setDoc } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import {
   ref,
@@ -22,13 +22,28 @@ export default function CreateDonation() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const onSubmit = (data: any) => {
     const file = data.display[0];
 
     const storage = getStorage();
 
-    const storageRef = ref(storage, `donations/${file.name}`);
+    const { uInt32 } = aleaRNGFactory();
+    const name = `${uInt32()}-${(data.name as string)
+      .toLowerCase()
+      .replace(" ", "-")}`;
+
+    const lastDot = file.name.lastIndexOf(".");
+
+    const fileName = file.name
+      .substring(0, lastDot)
+      .toLowerCase()
+      .replace(" ", "-");
+
+    const ext = file.name.substring(lastDot + 1);
+
+    const storageRef = ref(storage, `donations/${name}-${fileName}.${ext}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
     uploadTask.on(
@@ -42,25 +57,31 @@ export default function CreateDonation() {
         alert(error);
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const { uInt32 } = aleaRNGFactory(10);
-
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
           const db = getFirestore();
           const auth = getAuth();
 
-          const docRef = doc(
-            db,
-            `donations/${uInt32()}-${(data.name as string)
-              .toLowerCase()
-              .replace(" ", "-")}`
-          );
+          const docRef = doc(db, `donations/${name}`);
+
+          const gr = async () => {
+            const a = await fetch(
+              `https://api.mapbox.com/geocoding/v5/mapbox.places/${data.displayAddress}.json?access_token=pk.eyJ1IjoiaGF6ZWxoYW5kcmF0YSIsImEiOiJjbDc5NTl5dzUwZzd0M3FzY21jNHBrcTZ4In0.lIcMlK8oXVc4ftv8pc84rg`
+            );
+
+            return await a.json();
+          };
+
+          const geodata = await gr();
+
+          const latlong = geodata.features[0].center;
 
           delete data.display;
 
-          setDoc(
+          return setDoc(
             docRef,
             {
               ...data,
+              address: new GeoPoint(latlong[1], latlong[0]),
               display: downloadURL,
               owner: auth.currentUser?.uid,
               takeAwayHistory: [],
@@ -68,7 +89,10 @@ export default function CreateDonation() {
             {
               merge: true,
             }
-          );
+          ).then(() => {
+            reset();
+            alert("Success insert data, now the form will resetting!");
+          });
         });
       }
     );
@@ -106,7 +130,7 @@ export default function CreateDonation() {
 
             <input
               type="text"
-              {...register("address", { required: true })}
+              {...register("displayAddress", { required: true })}
               placeholder="Address"
             />
             <div className="flex flex-col gap-2">
@@ -121,10 +145,7 @@ export default function CreateDonation() {
             </div>
 
             <label className="flex items-center gap-5">
-              <input
-                type="checkbox"
-                {...register("published", { required: true })}
-              />
+              <input type="checkbox" {...register("published")} />
               <span>Published</span>
             </label>
             <Button type="submit">Submit</Button>

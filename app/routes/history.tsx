@@ -29,7 +29,7 @@ export default function Page() {
 
     const coll = collection(
       db,
-      `users/d9gVpTlLfhl98UGEPA3B/historyTransaction`
+      `users/${auth.currentUser?.uid}/historyTransaction`
     );
     const q = query(coll, limit(20));
 
@@ -58,11 +58,11 @@ export default function Page() {
 
       const auth = getAuth();
 
-      // ${auth.currentUser.uid}
+      //
 
       const coll = collection(
         db,
-        `users/d9gVpTlLfhl98UGEPA3B/historyTransaction`
+        `users/${auth.currentUser?.uid}/historyTransaction`
       );
       const q = query(coll, startAfter(lastVisible), limit(20));
 
@@ -94,18 +94,24 @@ export default function Page() {
           <h1 className="text-4xl font-bold my-10">Histories</h1>
 
           <ul className="flex flex-col gap-3">
-            {histories.map((history: any) => (
-              <li key={history.id}>
-                <div className="flex justify-between px-4 items-center hover:bg-neutral-200">
-                  <span>{history.pcs}</span>
-                  <span>
-                    {dayjs(history.addedAt.seconds * 1000).format(
-                      "dddd, mm MMMM YYYY "
-                    )}
-                  </span>
-                </div>
-              </li>
-            ))}
+            {histories.length < 1 && (
+              <h1 className="font-bold text-4xl w-full md:w-1/2 text-brand-green">
+                No history available, lets find a restaurant.
+              </h1>
+            )}
+            {histories.length > 0 &&
+              histories.map((history: any) => (
+                <li key={history.id}>
+                  <div className="flex justify-between px-4 items-center hover:bg-neutral-200">
+                    <span>{history.pcs}</span>
+                    <span>
+                      {dayjs(history.addedAt.seconds * 1000).format(
+                        "dddd, mm MMMM YYYY "
+                      )}
+                    </span>
+                  </div>
+                </li>
+              ))}
           </ul>
 
           <div className="mt-10">
