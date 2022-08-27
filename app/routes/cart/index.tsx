@@ -80,46 +80,48 @@ export default function Page() {
   };
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar backTo="/" />
-      <div className="p-10 flex flex-col gap-5">
-        <h1 className="text-4xl font-bold">Cart</h1>
-        {cartData.length < 1 ? (
-          <div>Loading...</div>
-        ) : (
-          <ul className="flex flex-col gap-3">
-            {cartData.map((data: any, index: number) => (
-              <li
-                key={`${data.id}-${index}`}
-                className="flex justify-between items-center"
-              >
-                <div>
-                  <h2 className="font-bold text-lg">{data.name}</h2>
+      <div className="flex justify-center bg-[url('/doodle/UnboxingDoodle.png')] bg-no-repeat bg-left-bottom bg-50% flex-grow">
+        <div className="p-10 flex flex-col gap-5 w-full lg:w-1/2 xl:w-1/3 bg-white rounded-lg md:shadow-lg md:border h-min md:mt-10">
+          <h1 className="text-4xl font-bold">Cart</h1>
+          {cartData.length < 1 ? (
+            <div>Loading...</div>
+          ) : (
+            <ul className="flex flex-col gap-3">
+              {cartData.map((data: any, index: number) => (
+                <li
+                  key={`${data.id}-${index}`}
+                  className="flex justify-between items-center"
+                >
+                  <div>
+                    <h2 className="font-bold text-lg">{data.name}</h2>
 
-                  <div>{data.price}</div>
-                </div>
-                <div className="flex items-center overflow-hidden">
-                  <span className="px-4 ">Pcs: {data.meta.pcs}</span>
-                  <button
-                    key={`${data.id}-incr`}
-                    onClick={() => increasePcs(data.id)}
-                    className="font-bold text-2xl py-2 px-3 hover:bg-neutral-200 focus:bg-neutral-200"
-                  >
-                    +
-                  </button>
-                  <button
-                    key={`${data.id}-decr`}
-                    onClick={() => decreasePcs(data.id, data.meta.pcs, index)}
-                    className="font-bold text-2xl py-2 px-3 hover:bg-neutral-200 focus:bg-neutral-200"
-                  >
-                    -
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-        <Button>Checkout</Button>
+                    <div>{data.price}</div>
+                  </div>
+                  <div className="flex items-center overflow-hidden">
+                    <span className="px-4 ">Pcs: {data.meta.pcs}</span>
+                    <button
+                      key={`${data.id}-incr`}
+                      onClick={() => increasePcs(data.id)}
+                      className="font-bold text-2xl py-2 px-3 hover:bg-neutral-200 focus:bg-neutral-200"
+                    >
+                      +
+                    </button>
+                    <button
+                      key={`${data.id}-decr`}
+                      onClick={() => decreasePcs(data.id, data.meta.pcs, index)}
+                      className="font-bold text-2xl py-2 px-3 hover:bg-neutral-200 focus:bg-neutral-200"
+                    >
+                      -
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+          <Button>Checkout</Button>
+        </div>
       </div>
     </div>
   );

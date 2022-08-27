@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import AuthForm from "~/components/auth/form";
+import Navbar from "~/components/navbar";
 
 export default function Login() {
   const [error, setError] = useState<Error>();
@@ -21,5 +22,14 @@ export default function Login() {
       });
   };
 
-  return <AuthForm title="Login" error={error} onSubmit={onSubmit} />;
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <div className="flex-grow bg-white flex flex-col">
+        <div className="bg-[url('/doodle/DancingDoodle.png')] bg-no-repeat bg-left-bottom bg-50% flex-grow ">
+          <AuthForm title="Login" error={error} onSubmit={onSubmit} />
+        </div>
+      </div>
+    </div>
+  );
 }

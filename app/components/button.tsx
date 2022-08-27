@@ -18,7 +18,7 @@ export default function Button({
       {...(onClick && { onClick: onClick })}
       {...(disabled && { disabled: disabled })}
       whileTap={{ scale: 0.9 }}
-      className="text-lg font-bold py-2 bg-orange-300 disabled:bg-neutral-300 w-full"
+      className="text-lg font-bold py-2 bg-brand-green text-brand-yellow disabled:bg-neutral-300 w-full rounded-lg"
     >
       {children}
     </motion.button>

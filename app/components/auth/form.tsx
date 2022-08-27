@@ -41,7 +41,7 @@ export default function AuthForm({
       <div className="flex w-full justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-10 p-10"
+          className="w-full md:w-1/3 lg:w-1/4 flex flex-col gap-10 p-10 bg-white md:shadow-lg md:border rounded-lg md:mt-20"
         >
           <h1 className="text-4xl font-bold">{title}</h1>
           <fieldset className="flex flex-col gap-5">
@@ -51,7 +51,7 @@ export default function AuthForm({
                 placeholder="Email address"
                 id="email"
                 {...register("email", { required: true })}
-                className="w-full text-lg px-4 py-2"
+                className="w-full text-lg px-4 py-2  rounded-lg"
               />
               {errors.email && (
                 <span className="bg-red-200 py-1 px-4 w-full">
@@ -66,7 +66,7 @@ export default function AuthForm({
                 placeholder="Password"
                 id="password"
                 {...register("password", { required: true })}
-                className="w-full text-lg px-4 py-2"
+                className="w-full text-lg px-4 py-2 rounded-lg"
               />
               {errors.email && (
                 <span className="bg-red-200 py-1 px-4 w-full">
