@@ -13,7 +13,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 
 function useWindowSize() {
   const [size, setSize] = useState([0, 0]);
-  useLayoutEffect(() => {
+  useEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);
     }
@@ -75,7 +75,7 @@ export default function Navbar({ backTo }: { backTo?: string }) {
                 <FontAwesomeIcon icon={faUser} />
               </span>
             </Menu.Button>
-            <Menu.Items className="absolute bg-white right-0 origin-top-right mt-4 first:pt-2 last:pb-2">
+            <Menu.Items className="absolute bg-white right-0 origin-top-right mt-4 first:pt-2 last:pb-2 shadow-lg rounded-lg overflow-hidden font-semibold">
               <div className="flex flex-col gap-3">
                 <Menu.Item>
                   {({ active }) => (

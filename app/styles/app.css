@@ -754,6 +754,10 @@ select {
   margin-bottom: 2.5rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -780,6 +784,10 @@ select {
 
 .grid {
   display: grid;
+}
+
+.h-full {
+  height: 100%;
 }
 
 .h-20 {
@@ -888,6 +896,10 @@ select {
   gap: 0.25rem;
 }
 
+.gap-2 {
+  gap: 0.5rem;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -898,6 +910,19 @@ select {
 
 .rounded-lg {
   border-radius: 0.5rem;
+}
+
+.border-4 {
+  border-width: 4px;
+}
+
+.border-dashed {
+  border-style: dashed;
+}
+
+.border-brand-green {
+  --tw-border-opacity: 1;
+  border-color: rgb(71 116 95 / var(--tw-border-opacity));
 }
 
 .bg-brand-green {
@@ -913,6 +938,10 @@ select {
 .bg-red-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
+}
+
+.bg-\[url\(\'\/doodle\/LovingDoodle\.png\'\)\] {
+  background-image: url('/doodle/LovingDoodle.png');
 }
 
 .bg-\[url\(\'\/android-chrome-192x192\.png\'\)\] {
@@ -931,8 +960,20 @@ select {
   background-image: url('/doodle/UnboxingDoodle.png');
 }
 
+.bg-\[url\(\'\/doodle\/CoffeeDoddle\.png\'\)\] {
+  background-image: url('/doodle/CoffeeDoddle.png');
+}
+
+.bg-\[url\(\'\/doodle\/IceCreamDoodle\.png\'\)\] {
+  background-image: url('/doodle/IceCreamDoodle.png');
+}
+
 .bg-50\% {
   background-size: 50%;
+}
+
+.bg-right-bottom {
+  background-position: right bottom;
 }
 
 .bg-center {
@@ -960,14 +1001,19 @@ select {
   padding-bottom: 0.5rem;
 }
 
-.py-20 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
 }
 
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+
+.py-4 {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .py-5 {
@@ -998,9 +1044,18 @@ select {
   text-align: right;
 }
 
+.text-justify {
+  text-align: justify;
+}
+
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-8xl {
+  font-size: 6rem;
+  line-height: 1;
 }
 
 .text-4xl {
@@ -1017,8 +1072,16 @@ select {
   font-weight: 700;
 }
 
+.font-black {
+  font-weight: 900;
+}
+
 .font-medium {
   font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .tracking-wide {
@@ -1030,8 +1093,19 @@ select {
   color: rgb(250 234 156 / var(--tw-text-opacity));
 }
 
+.text-brand-green {
+  --tw-text-opacity: 1;
+  color: rgb(71 116 95 / var(--tw-text-opacity));
+}
+
 .opacity-80 {
   opacity: 0.8;
+}
+
+.shadow-lg {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .duration-150 {
@@ -1044,16 +1118,6 @@ select {
 
 .last\:pb-2:last-child {
   padding-bottom: 0.5rem;
-}
-
-.odd\:bg-orange-300:nth-child(odd) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(253 186 116 / var(--tw-bg-opacity));
-}
-
-.even\:bg-neutral-200:nth-child(even) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 229 229 / var(--tw-bg-opacity));
 }
 
 .hover\:h-1\/2:hover {
@@ -1121,6 +1185,10 @@ select {
 }
 
 @media (min-width: 1024px) {
+  .lg\:w-1\/3 {
+    width: 33.333333%;
+  }
+
   .lg\:w-1\/2 {
     width: 50%;
   }

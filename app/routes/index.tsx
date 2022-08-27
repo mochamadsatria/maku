@@ -60,7 +60,7 @@ export default function Index() {
     <div className="">
       <Navbar />
 
-      <ul className="flex justify-between px-10 flex-wrap gap-5 odd:bg-orange-300 even:bg-neutral-200">
+      <ul className="flex justify-between px-10 flex-wrap gap-5 font-bold text-lg text-brand-green tracking-wide">
         <li className="py-2">
           <Link to={"/restaurants"}>Restaurants</Link>
         </li>

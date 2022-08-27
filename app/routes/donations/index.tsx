@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import Button from "~/components/button";
 import { Link } from "@remix-run/react";
 import Navbar from "~/components/navbar";
+import Footer from "~/components/footer";
 
 export default function Page() {
   const [donationsSnapshot, setDonationsSnapshot] =
@@ -73,36 +74,39 @@ export default function Page() {
   return (
     <div>
       <Navbar backTo="/" />
-      <div className="flex justify-center">
-        <div className="px-10 w-full md:w-3/4 lg:w-1/2">
-          <h1 className="text-4xl font-bold my-10">Donations</h1>
+      <div className="bg-[url('/doodle/IceCreamDoodle.png')] bg-no-repeat bg-left-bottom bg-50% flex-grow ">
+        <div className="flex justify-center">
+          <div className="p-10 w-full md:w-3/4 lg:w-1/2 bg-white md:shadow-lg md:border rounded-lg my-10">
+            <h1 className="text-4xl font-bold my-10">Donations</h1>
 
-          <ul className="flex flex-col gap-3">
-            {donations.map((donation: any) => (
-              <li key={donation.id}>
-                <Link
-                  to={`/donations/${donation.id}`}
-                  className="flex justify-between px-4 items-center hover:bg-neutral-200"
-                >
-                  <div>
-                    <h2>{donation.name}</h2>
-                    <span>{donation.displayAddress}</span>
-                  </div>
-                  <img
-                    alt={donation.name}
-                    src={donation.display}
-                    className="w-20"
-                  />
-                </Link>
-              </li>
-            ))}
-          </ul>
+            <ul className="flex flex-col gap-3">
+              {donations.map((donation: any) => (
+                <li key={donation.id}>
+                  <Link
+                    to={`/donations/${donation.id}`}
+                    className="flex justify-between px-4 items-center hover:bg-neutral-200"
+                  >
+                    <div>
+                      <h2>{donation.name}</h2>
+                      <span>{donation.displayAddress}</span>
+                    </div>
+                    <img
+                      alt={donation.name}
+                      src={donation.display}
+                      className="w-20"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
 
-          <div className="mt-10">
-            <Button onClick={loadMore}>Load more</Button>
+            <div className="mt-10">
+              <Button onClick={loadMore}>Load more</Button>
+            </div>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

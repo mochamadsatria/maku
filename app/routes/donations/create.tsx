@@ -70,49 +70,62 @@ export default function CreateDonation() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar backTo="/donations" />
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset className="flex flex-col gap-3 p-10">
-          <h1 className="text-4xl font-bold">Create new donation</h1>
+      <div className="flex justify-center flex-grow bg-[url('/doodle/CoffeeDoddle.png')] bg-no-repeat bg-left-bottom bg-50%">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full lg:w-1/2 xl:w-1/3 bg-white md:shadow-lg md:border rounded-lg h-min"
+        >
+          <fieldset className="flex flex-col gap-5 p-10">
+            <h1 className="text-4xl font-bold">Create new donation</h1>
 
-          <input
-            type="text"
-            {...register("name", { required: true })}
-            placeholder="Name"
-          />
-          <input
-            type="textnumber"
-            {...register("stock", { required: true })}
-            placeholder="Stock"
-          />
-          <select
-            {...register("type", { required: true })}
-            defaultValue={"food"}
-            placeholder="Type"
-          >
-            <option value={"food"}>Food</option>
-            <option value={"beverage"}>Beverage</option>
-          </select>
-
-          <input
-            type="text"
-            {...register("address", { required: true })}
-            placeholder="Address"
-          />
-          <label>Picture</label>
-          <input type="file" {...register("display", { required: true })} />
-
-          <label className="flex items-center gap-5">
             <input
-              type="checkbox"
-              {...register("published", { required: true })}
+              type="text"
+              {...register("name", { required: true })}
+              placeholder="Name"
             />
-            <span>Published</span>
-          </label>
-          <Button type="submit">Submit</Button>
-        </fieldset>
-      </form>
+            <input
+              type="number"
+              {...register("stock", { required: true })}
+              placeholder="Stock"
+            />
+            <select
+              {...register("type", { required: true })}
+              defaultValue={"food"}
+              placeholder="Type"
+            >
+              <option value={"food"}>Food</option>
+              <option value={"beverage"}>Beverage</option>
+            </select>
+
+            <input
+              type="text"
+              {...register("address", { required: true })}
+              placeholder="Address"
+            />
+            <div className="flex flex-col gap-2">
+              <label htmlFor="display" className="font-medium">
+                Picture
+              </label>
+              <input
+                type="file"
+                {...register("display", { required: true })}
+                id="display"
+              />
+            </div>
+
+            <label className="flex items-center gap-5">
+              <input
+                type="checkbox"
+                {...register("published", { required: true })}
+              />
+              <span>Published</span>
+            </label>
+            <Button type="submit">Submit</Button>
+          </fieldset>
+        </form>
+      </div>
     </div>
   );
 }

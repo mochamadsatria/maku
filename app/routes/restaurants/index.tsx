@@ -13,6 +13,7 @@ import {
 import Button from "~/components/button";
 import { Link } from "@remix-run/react";
 import Navbar from "~/components/navbar";
+import Footer from "~/components/footer";
 
 export default function Page() {
   //const [isClient, setIsClient] = useState<boolean>(false);
@@ -81,14 +82,18 @@ export default function Page() {
   return (
     <div>
       <Navbar backTo="/" />
-      <div className="p-10">
+      <div className="p-10 flex flex-col gap-3">
         <h1 className="text-4xl font-bold">Restaurants</h1>
 
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
           {restaurants.map((restaurant: any) => (
             <li key={restaurant.id}>
-              <Link to={`/restaurants/${restaurant.id}`}>
-                <img alt={restaurant.name} src={restaurant.logo} />
+              <Link to={`/restaurants/${restaurant.id}`} className="group">
+                <img
+                  alt={restaurant.name}
+                  src={restaurant.logo}
+                  className="group-hover:bg-neutral-200 p-10"
+                />
               </Link>
             </li>
           ))}
@@ -96,6 +101,7 @@ export default function Page() {
 
         <Button onClick={loadMore}>Load more</Button>
       </div>
+      <Footer />
     </div>
   );
 }
