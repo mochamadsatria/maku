@@ -7,7 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { getAnalytics } from "firebase/analytics";
 
@@ -35,6 +35,12 @@ export const meta: MetaFunction = () => ({
 });
 
 function App() {
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   useEffect(() => {
     getAnalytics(app);
   }, []);
@@ -43,7 +49,7 @@ function App() {
     <html lang="en">
       <head>
         <Meta />
-
+        {isClient && <style>{dom.css()}</style>}
         <Links />
       </head>
       <body>
