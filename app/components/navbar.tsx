@@ -46,7 +46,12 @@ export default function Navbar({ backTo }: { backTo?: string }) {
           </Link>
         )}
 
-        <div className="bg-[url('/android-chrome-192x192.png')] bg-center h-20 w-32 bg-no-repeat"></div>
+        <Link
+          to={"/"}
+          className="bg-[url('/android-chrome-192x192.png')] bg-center h-20 w-32 bg-no-repeat"
+        >
+          <div></div>
+        </Link>
       </div>
       <div className="flex items-center">
         {isClient && !auth.currentUser && width > 768 && (

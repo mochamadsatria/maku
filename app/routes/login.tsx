@@ -1,3 +1,4 @@
+import { MetaFunction } from "@remix-run/node";
 import {
   getAuth,
   setPersistence,
@@ -7,6 +8,10 @@ import {
 import { useState } from "react";
 import AuthForm from "~/components/auth/form";
 import Navbar from "~/components/navbar";
+
+export const meta: MetaFunction = () => ({
+  title: "Login | Makananku Maku",
+});
 
 export default function Login() {
   const [error, setError] = useState<Error>();

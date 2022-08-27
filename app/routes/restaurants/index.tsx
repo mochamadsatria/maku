@@ -14,6 +14,11 @@ import Button from "~/components/button";
 import { Link } from "@remix-run/react";
 import Navbar from "~/components/navbar";
 import Footer from "~/components/footer";
+import { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => ({
+  title: "Explore restaurants | Makananku Maku",
+});
 
 export default function Page() {
   //const [isClient, setIsClient] = useState<boolean>(false);

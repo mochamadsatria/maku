@@ -1,3 +1,4 @@
+import { MetaFunction } from "@remix-run/node";
 import { useParams } from "@remix-run/react";
 import { getAuth } from "firebase/auth";
 import {
@@ -11,6 +12,10 @@ import {
 import { useEffect, useState } from "react";
 import Button from "~/components/button";
 import Navbar from "~/components/navbar";
+
+export const meta: MetaFunction = () => ({
+  title: "Product | Makananku Maku",
+});
 
 export default function Page() {
   const params = useParams();

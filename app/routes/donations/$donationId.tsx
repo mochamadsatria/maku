@@ -7,9 +7,14 @@ import Navbar from "~/components/navbar";
 import Map, { Marker } from "react-map-gl";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { MetaFunction } from "@remix-run/node";
 
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoiaGF6ZWxoYW5kcmF0YSIsImEiOiJjbDc5NTl5dzUwZzd0M3FzY21jNHBrcTZ4In0.lIcMlK8oXVc4ftv8pc84rg";
+
+export const meta: MetaFunction = () => ({
+  title: "Donation | Makananku Maku",
+});
 
 export default function Page() {
   const [data, setData] = useState<any>();

@@ -11,6 +11,11 @@ import {
   uploadBytesResumable,
   getStorage,
 } from "firebase/storage";
+import type { MetaFunction } from "@remix-run/node";
+
+export const meta: MetaFunction = () => ({
+  title: "Create donation | Makananku Maku",
+});
 
 export default function CreateDonation() {
   const {

@@ -15,9 +15,14 @@ import Navbar from "~/components/navbar";
 import { useGeolocated } from "react-geolocated";
 import Button from "~/components/button";
 import { Link } from "@remix-run/react";
+import type { MetaFunction } from "@remix-run/node";
 
 const lat = 0.0144927536231884; // degrees latitude per mile
 const lon = 0.0181818181818182; // degrees longitude per mile
+
+export const meta: MetaFunction = () => ({
+  title: "Explore nearby | Makananku Maku",
+});
 
 export default function Page() {
   const [donationsSnapshot, setDonationsSnapshot] = useState<any>();

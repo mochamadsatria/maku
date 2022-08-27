@@ -22,11 +22,16 @@ import Button from "~/components/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import Navbar from "~/components/navbar";
+import { MetaFunction } from "@remix-run/node";
 
 dayjs.extend(relativeTime);
 
 const MAPBOX_TOKEN =
   "pk.eyJ1IjoiaGF6ZWxoYW5kcmF0YSIsImEiOiJjbDc5NTl5dzUwZzd0M3FzY21jNHBrcTZ4In0.lIcMlK8oXVc4ftv8pc84rg";
+
+export const meta: MetaFunction = () => ({
+  title: "Explore restaurant product | Makananku Maku",
+});
 
 export default function Page() {
   //const [client, setClient] = useState<boolean>(false);

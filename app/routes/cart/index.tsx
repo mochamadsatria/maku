@@ -1,9 +1,9 @@
+import type { MetaFunction } from "@remix-run/node";
 import { getAuth } from "firebase/auth";
 import {
   getFirestore,
   collection,
   query,
-  limit,
   getDocs,
   getDoc,
   doc,
@@ -18,6 +18,10 @@ import Navbar from "~/components/navbar";
 function EmptyCart() {
   return <div></div>;
 }
+
+export const meta: MetaFunction = () => ({
+  title: "Cart | Makananku Maku",
+});
 
 export default function Page() {
   const [cartData, setCartData] = useState<object[]>([]);

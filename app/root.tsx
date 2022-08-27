@@ -14,6 +14,7 @@ import { getAnalytics } from "firebase/analytics";
 import styles from "./styles/app.css";
 import app from "./firebase";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { dom } from "@fortawesome/fontawesome-svg-core";
 
 export function links() {
   return [
@@ -41,6 +42,7 @@ function App() {
     <html lang="en">
       <head>
         <Meta />
+        <style>{dom.css()}</style>
         <Links />
       </head>
       <body>
