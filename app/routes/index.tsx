@@ -1,3 +1,105 @@
+import { Link } from "@remix-run/react";
+import {
+  getFirestore,
+  collection,
+  query,
+  limit,
+  getDocs,
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
+import Button from "~/components/button";
+
 export default function Index() {
-  return <div></div>;
+  const [restaurants, setRestaurants] = useState<object[]>([]);
+
+  const [donations, setDonations] = useState<object[]>([]);
+
+  useEffect(() => {
+    const db = getFirestore();
+
+    const coll = collection(db, "restaurants");
+    const q = query(coll, limit(20));
+
+    getDocs(q).then((snapshots) => {
+      let docs: object[] = [];
+
+      snapshots.forEach((snapshot) => {
+        docs.push({
+          id: snapshot.id,
+          ...snapshot.data(),
+        });
+      });
+
+      setRestaurants(docs);
+    });
+  }, []);
+
+  useEffect(() => {
+    const db = getFirestore();
+
+    const coll = collection(db, "donations");
+    const q = query(coll, limit(20));
+
+    getDocs(q).then((snapshots) => {
+      let docs: object[] = [];
+
+      snapshots.forEach((snapshot) => {
+        docs.push({
+          id: snapshot.id,
+          ...snapshot.data(),
+        });
+      });
+
+      setDonations(docs);
+    });
+  }, []);
+
+  return (
+    <div className="">
+      <div className="p-10">
+        <h1 className="text-4xl font-bold">Restaurants</h1>
+
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          {restaurants.map((restaurant: any) => (
+            <li key={restaurant.id}>
+              <Link to={`/restaurants/${restaurant.id}`} className="group ">
+                <div className="p-5 group-hover:bg-neutral-200">
+                  <img alt={restaurant.name} src={restaurant.logo} />
+                  <div className="">
+                    <h2 className="text-lg font-medium">{restaurant.name}</h2>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <Link to={"/restaurants"}>
+          <Button>Load more</Button>
+        </Link>
+      </div>
+      <div className="p-10">
+        <h1 className="text-4xl font-bold">Donations</h1>
+
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          {donations.map((donation: any) => (
+            <li key={donation.id}>
+              <Link to={`/donations/${donation.id}`} className="group ">
+                <div className="p-5 group-hover:bg-neutral-200">
+                  <img alt={donation.name} src={donation.display} />
+                  <div className="">
+                    <h2 className="text-lg font-medium">{donation.name}</h2>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <Link to={"/donations"}>
+          <Button>Load more</Button>
+        </Link>
+      </div>
+    </div>
+  );
 }

@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import Button from "~/components/button";
 import { Link } from "@remix-run/react";
+import Navbar from "~/components/navbar";
 
 export default function Page() {
   //const [isClient, setIsClient] = useState<boolean>(false);
@@ -78,20 +79,23 @@ export default function Page() {
   const loadMore = () => setPage(page + 1);
 
   return (
-    <div className="p-10">
-      <h1 className="text-4xl font-bold">Restaurants</h1>
+    <div>
+      <Navbar backTo="/" />
+      <div className="p-10">
+        <h1 className="text-4xl font-bold">Restaurants</h1>
 
-      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-        {restaurants.map((restaurant: any) => (
-          <li key={restaurant.id}>
-            <Link to={`/restaurants/${restaurant.id}`}>
-              <img alt={restaurant.name} src={restaurant.logo} />
-            </Link>
-          </li>
-        ))}
-      </ul>
+        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          {restaurants.map((restaurant: any) => (
+            <li key={restaurant.id}>
+              <Link to={`/restaurants/${restaurant.id}`}>
+                <img alt={restaurant.name} src={restaurant.logo} />
+              </Link>
+            </li>
+          ))}
+        </ul>
 
-      <Button onClick={loadMore}>Load more</Button>
+        <Button onClick={loadMore}>Load more</Button>
+      </div>
     </div>
   );
 }
