@@ -81,17 +81,15 @@ export default function Page() {
     <div className="p-10">
       <h1 className="text-4xl font-bold">Restaurants</h1>
 
-      <Suspense fallback={<>loading...</>}>
-        <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-          {restaurants.map((restaurant: any) => (
-            <li key={restaurant.id}>
-              <Link to={`/restaurants/${restaurant.id}`}>
-                <img alt={restaurant.restaurantName} src={restaurant.logo} />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </Suspense>
+      <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+        {restaurants.map((restaurant: any) => (
+          <li key={restaurant.id}>
+            <Link to={`/restaurants/${restaurant.id}`}>
+              <img alt={restaurant.name} src={restaurant.logo} />
+            </Link>
+          </li>
+        ))}
+      </ul>
 
       <Button onClick={loadMore}>Load more</Button>
     </div>

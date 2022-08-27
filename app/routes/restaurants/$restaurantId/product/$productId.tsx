@@ -1,5 +1,13 @@
 import { useParams } from "@remix-run/react";
-import { getFirestore, collection, doc, getDoc } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Button from "~/components/button";
 import Navbar from "~/components/navbar";
@@ -25,6 +33,27 @@ export default function Page() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const addToCart = () => {
+    const db = getFirestore();
+    const auth = getAuth();
+
+    const docRef = doc(
+      db,
+      `users/${auth.currentUser?.uid}/cart/${params.productId}`
+    );
+
+    setDoc(
+      docRef,
+      {
+        addedAt: serverTimestamp(),
+        pcs: 1,
+      },
+      {
+        merge: true,
+      }
+    );
+  };
 
   return (
     <div>
@@ -65,7 +94,7 @@ export default function Page() {
                   {product.stock}
                 </span>
               </span>
-              <Button>Add to cart</Button>
+              <Button onClick={addToCart}>Add to cart</Button>
               <Button>Checkout</Button>
             </div>
           </div>

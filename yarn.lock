@@ -6456,6 +6456,11 @@ normalize-url@^6.0.1:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-6.1.0.tgz#40d0885b535deffe3f3147bec877d05fe4c5668a"
   integrity sha512-DlL+XwOy3NxAQ8xuC0okPgK46iuVNAK01YN7RueYBqqFeGsBjV9XmCAzAdgt+667bCl5kPh9EqKKDwnaPG1I7A==
 
+number-generator@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/number-generator/-/number-generator-4.0.6.tgz#342242f86246c0df9c3afaa378fb4087be865ff5"
+  integrity sha512-ukd0L4kx6SshvxMJzQLmEMiztQ5JswpdHfIUirhj4Peno4zQOXSg1l38ZrmL/PvTZgsKAUwlwK7ix0/WZ54cLg==
+
 object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
