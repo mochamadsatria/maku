@@ -9,8 +9,10 @@ Indonesia itself disposes **36 million tons of food waste** per year in the peri
 ## What it does
 MAKU for commercial aims to help those restaurants who have excess food _that is still good enough and doesn't exceed the expiration date_ to sell it on our platform at a reasonable price rather than being thrown away. While it is not fresh enough Maku will help the restaurant to recook the food to result in other dishes that are still fresh enough to sell *(ex: rice -> fried rice)*.
 
-MAKU for individuals (not commercial) aims to help those, who have excess food _that is still good enough_ and wanna donate it (or even some people that just wanna share food), by advertising their food on our platform. That means Maku will unite those people who wanna donate their food with some people that need it.
+MAKU for individuals (not commercial) aims to help those, who have excess food _that is still good enough_ and wanna donate it (or even some people that just wanna share food), by advertising their food on our platform. That means Maku will help unite those people who wanna donate their food with some people that need it.
 
-## Scalability
+## How we built it
+
 
 ## What's next for MAKU (Makanan Ku) 
+Maku will focus to expand and increase our partnership with all restaurants in Indonesia. We hope that many people will know Maku and work together to reduce hunger and food waste in Indonesia.
