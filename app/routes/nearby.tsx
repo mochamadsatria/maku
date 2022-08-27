@@ -15,7 +15,6 @@ import Navbar from "~/components/navbar";
 import { useGeolocated } from "react-geolocated";
 import Button from "~/components/button";
 import { Link } from "@remix-run/react";
-import { useQuery } from "react-query";
 
 const lat = 0.0144927536231884; // degrees latitude per mile
 const lon = 0.0181818181818182; // degrees longitude per mile
@@ -24,6 +23,8 @@ export default function Page() {
   const [donationsSnapshot, setDonationsSnapshot] = useState<any>();
   const [donations, setDonations] = useState<any>([]);
   const [page, setPage] = useState<number>(0);
+
+  const [loc, setLoc] = useState<any>();
 
   const [isClient, setIsClient] = useState<boolean>(false);
 
@@ -35,20 +36,17 @@ export default function Page() {
       userDecisionTimeout: 10000,
     });
 
-  const { isLoading, error, data } = useQuery(
-    ["repoData"],
-    () =>
-      fetch(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${coords?.latitude},${coords?.longitude}.json?access_token=pk.eyJ1IjoiaGF6ZWxoYW5kcmF0YSIsImEiOiJjbDc5NTl5dzUwZzd0M3FzY21jNHBrcTZ4In0.lIcMlK8oXVc4ftv8pc84rg`
-      ).then((res) => res.json()),
-    {
-      refetchOnWindowFocus: false,
+  useEffect(() => {
+    const gr = async () => {
+      const a = await fetch(
+        `https://api.mapbox.com/geocoding/v5/mapbox.places/${coords?.longitude},${coords?.latitude}.json?access_token=pk.eyJ1IjoiaGF6ZWxoYW5kcmF0YSIsImEiOiJjbDc5NTl5dzUwZzd0M3FzY21jNHBrcTZ4In0.lIcMlK8oXVc4ftv8pc84rg`
+      );
+      let data = await a.json();
 
-      refetchOnReconnect: false,
-      retry: false,
-      staleTime: 24 * 60 * 60 * 1000,
-    }
-  );
+      setLoc(data);
+    };
+    gr();
+  }, [coords]);
 
   useEffect(() => {
     setIsClient(true);
@@ -144,7 +142,7 @@ export default function Page() {
   return (
     <div className="overflow-hidden max-h-screen relative">
       <div className="relative z-40">
-        <Navbar backTo="/restaurants" />
+        <Navbar backTo="/" />
         {isClient && (
           <>
             {!isGeolocationAvailable ? (
@@ -153,9 +151,8 @@ export default function Page() {
               <div>Geolocation is not enabled</div>
             ) : coords ? (
               <div>
-                {isLoading && <div>Place loading</div>}
-                {data && (
-                  <div className="px-10">{data.features[0].place_name}</div>
+                {loc && (
+                  <div className="px-10">{loc.features[0].place_name}</div>
                 )}
                 {donations.length < 1 ? (
                   <div className="p-10">

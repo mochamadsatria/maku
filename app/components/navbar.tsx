@@ -8,8 +8,11 @@ import {
 import { Link } from "@remix-run/react";
 import { Menu } from "@headlessui/react";
 import { getAuth, signOut } from "firebase/auth";
+import Button from "./button";
 
 export default function Navbar({ backTo }: { backTo?: string }) {
+  const auth = getAuth();
+
   return (
     <div className="flex bg-white w-full px-10 py-5 justify-between">
       <div className="flex items-center gap-5">
@@ -24,6 +27,19 @@ export default function Navbar({ backTo }: { backTo?: string }) {
         <div className="bg-[url('/android-chrome-192x192.png')] bg-center h-20 w-32 bg-no-repeat"></div>
       </div>
       <div className="flex items-center">
+        {!auth.currentUser && (
+          <div className="flex gap-5 mx-5 items-center">
+            <Link to={"/register"}>
+              <button className="py-2 bg-orange-300 px-4 font-bold">
+                Signup
+              </button>
+            </Link>
+            <Link to={"/login"}>
+              <button>Login</button>
+            </Link>
+          </div>
+        )}
+
         <Link to="/cart">
           <button className="px-4">
             <FontAwesomeIcon icon={faCartShopping} />

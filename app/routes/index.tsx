@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Button from "~/components/button";
+import Footer from "~/components/footer";
 import Navbar from "~/components/navbar";
 
 export default function Index() {
@@ -58,7 +59,25 @@ export default function Index() {
   return (
     <div className="">
       <Navbar />
-      <div className="p-10">
+
+      <ul className="flex justify-between px-10 flex-wrap gap-3 odd:bg-orange-300 even:bg-neutral-200">
+        <li className="py-2">
+          <Link to={"/restaurants"}>Restaurants</Link>
+        </li>
+        <li className="py-2">
+          <Link to={"/donations"}>Donations</Link>
+        </li>
+        <li className="py-2">
+          <Link to={"/nearby"}>Nearby</Link>
+        </li>
+        <li className="py-2">
+          <Link to={"/donations/create"}>Create donation</Link>
+        </li>
+        <li className="py-2">
+          <Link to={"/history"}>History</Link>
+        </li>
+      </ul>
+      <div className="p-10 flex flex-col gap-3">
         <h1 className="text-4xl font-bold">Restaurants</h1>
 
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
@@ -80,7 +99,7 @@ export default function Index() {
           <Button>Load more</Button>
         </Link>
       </div>
-      <div className="p-10">
+      <div className="p-10 flex flex-col gap-3">
         <h1 className="text-4xl font-bold">Donations</h1>
 
         <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
@@ -103,6 +122,7 @@ export default function Index() {
           <Button>Load more</Button>
         </Link>
       </div>
+      <Footer />
     </div>
   );
 }
