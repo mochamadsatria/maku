@@ -8,6 +8,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Button from "~/components/button";
+import Navbar from "~/components/navbar";
 
 export default function Index() {
   const [restaurants, setRestaurants] = useState<object[]>([]);
@@ -56,6 +57,7 @@ export default function Index() {
 
   return (
     <div className="">
+      <Navbar />
       <div className="p-10">
         <h1 className="text-4xl font-bold">Restaurants</h1>
 
@@ -88,7 +90,8 @@ export default function Index() {
                 <div className="p-5 group-hover:bg-neutral-200">
                   <img alt={donation.name} src={donation.display} />
                   <div className="">
-                    <h2 className="text-lg font-medium">{donation.name}</h2>
+                    <h2 className="text-lg font-medium">{donation.name}</h2>{" "}
+                    <span>{donation.displayAddress}</span>
                   </div>
                 </div>
               </Link>

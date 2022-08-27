@@ -84,7 +84,10 @@ export default function Page() {
                   to={`/donations/${donation.id}`}
                   className="flex justify-between px-4 items-center hover:bg-neutral-200"
                 >
-                  <h2>{donation.name}</h2>
+                  <div>
+                    <h2>{donation.name}</h2>
+                    <span>{donation.displayAddress}</span>
+                  </div>
                   <img
                     alt={donation.name}
                     src={donation.display}

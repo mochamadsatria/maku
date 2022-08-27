@@ -13,9 +13,11 @@ import { getAnalytics } from "firebase/analytics";
 
 import styles from "./styles/app.css";
 import app from "./firebase";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 export function links() {
   return [
+    { rel: "manifest", href: "/site.webmanifest" },
     { rel: "stylesheet", href: styles },
     {
       rel: "stylesheet",
@@ -30,7 +32,7 @@ export const meta: MetaFunction = () => ({
   viewport: "width=device-width,initial-scale=1",
 });
 
-export default function App() {
+function App() {
   useEffect(() => {
     getAnalytics(app);
   }, []);
@@ -49,5 +51,15 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+const queryClient = new QueryClient();
+
+export default function AppWithProvider() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <App />
+    </QueryClientProvider>
   );
 }
