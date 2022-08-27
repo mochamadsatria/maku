@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import { useNavigate } from "@remix-run/react";
 import { getAuth } from "firebase/auth";
 import {
   getFirestore,
@@ -24,6 +25,8 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function Page() {
+  const navigate = useNavigate();
+
   const [cartData, setCartData] = useState<object[]>([]);
 
   const [isClient, setIsClient] = useState<boolean>(false);
@@ -66,16 +69,14 @@ export default function Page() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(cartData);
-  }, [cartData]);
-
   const increasePcs = (id: string) => {
     const db = getFirestore();
     const auth = getAuth();
     const docRef = doc(db, `users/${auth.currentUser?.uid}/cart/${id}`);
 
-    updateDoc(docRef, { pcs: increment(1) });
+    updateDoc(docRef, { pcs: increment(1) }).then(() => {
+      navigate("/cart");
+    });
   };
 
   const decreasePcs = (id: string, now: number, index: number) => {
@@ -84,14 +85,20 @@ export default function Page() {
     const docRef = doc(db, `users/${auth.currentUser?.uid}/cart/${id}`);
 
     if (now == 1) {
-      deleteDoc(docRef).then(() => {
-        let data = cartData;
-        data.splice(index);
+      deleteDoc(docRef)
+        .then(() => {
+          let data = cartData;
+          data.splice(index);
 
-        setCartData(data);
-      });
+          setCartData(data);
+        })
+        .then(() => {
+          navigate("/cart");
+        });
     } else {
-      updateDoc(docRef, { pcs: increment(-1) });
+      updateDoc(docRef, { pcs: increment(-1) }).then(() => {
+        navigate("/cart");
+      });
     }
   };
 
@@ -122,7 +129,8 @@ export default function Page() {
 
                         <div>{data.price}</div>
                       </div>
-                      <div className="flex items-center overflow-hidden">
+                      <span className="px-4 ">Pcs: {data.meta.pcs}</span>
+                      {/*<div className="flex items-center overflow-hidden">
                         <span className="px-4 ">Pcs: {data.meta.pcs}</span>
                         <button
                           key={`${data.id}-incr`}
@@ -140,7 +148,7 @@ export default function Page() {
                         >
                           -
                         </button>
-                      </div>
+                        </div>*/}
                     </li>
                   ))}
                 </ul>
