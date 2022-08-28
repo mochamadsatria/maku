@@ -16,27 +16,31 @@ Indonesia itself disposes **36 million tons of food waste** per year in the peri
 
 ### Stack Overview
 
-We built it with [Remix.run](https://remix.run/). We choose this because currently Remix is fastest than [Next.js](https://nextjs.org/). That one consideration come along with many other consideration like SSR and Static support, is this project need SSG, and many others. As for backend we use serverless service: [Firebase](https://firebase.google.com/) as a main frame because we think we do not have to reinvent the wheel for this small project. For map service, we use [Mapbox](https://www.mapbox.com/), one and the major reason why we choose Mapbox is because we do not have any experiences with google cloud especially Maps API.
+We built this app with [Remix.run](https://remix.run/). We choose this because currently, Remix is faster than [Next.js](https://nextjs.org/). That one consideration comes along with many other considerations like SSR and Static support, is this project needs SSG?, and many others. As for the backend, we use serverless service: [Firebase](https://firebase.google.com/) as the main frame because we think we do not have to reinvent the wheel for this small project. And for the map service, we use [Mapbox](https://www.mapbox.com/) API
 
 ### Design
 
-Maku app is designed to be a PWA to take advantage of mobile and web development at the same time.
+Maku app is designed to be a PWA ***(Progressive Web Apps)*** to take advantage of mobile and web development at the same time.
 
 ### Development Process
 
-First we split development process into 4 small stages, in the first stage we define data structure and create the basic feature the app needed like Find a Restaurant, Find a Donation, Create Donation, and Finding Nearby Donation. Currently this is the hardest stage because we implement new things that do not have many community support and documentation, especially dealing with geolocation. The source we thanks the most will be from [This Article](http://www.movable-type.co.uk/scripts/latlong.html). Next we create the additional features like Login, Register, History, etc. In the third stage we focus on styling and improve app visual and some campaign about our goals. The last stage we integrating services and fixing many bugs that known on the manual A/B tests. Many bugs have known:
+**First**, we split the development process into 4 small stages, **in the first stage** we define data structure and create the basic feature the app needs like Find a Restaurant, Find a Donation, Create Donation, and Finding Nearby Donation. Currently, this is **the hardest stage** because we implement new things that don't have much community support and documentation, especially dealing with geolocation. The source we thanks the most will be [This Article](http://www.movable-type.co.uk/scripts/latlong.html). 
 
-- Do not have clear error message
-- Wrong name convention in the data structure
-- There is no redirect withing auth stage, so it's not clear for user when the state is change
-- The cart not working properly
-- and many more minor bugs...
+**Then we create additional** features such as Login, Register, History, etc. **In the third stage**, we focus on styling and improving our app visuals and some campaign about our goals. **In the last stage** we integrated services and fixed many bugs that were known on the manual A/B tests. 
+
+## Challenges we ran into
+- The app do not have clear error message ***(fixed)***
+- Wrong name convention in the data structure ***(fixed)***
+- There is no redirect withing auth stage, so it's not clear for user when the state is change ***(fixed)***
+- The cart cannot working properly ***(fixed)***
 
 After dealing with many bugs, finally the app working properly. But because some consideration, some of the features currently disabled and cannot be interact with.
 
-### A Word
+## Accomplishments that we're proud of
 
-The code may be not clean and concise, but we put our upmost into this project, and this is it. This is what we can make with very short time. We hope this can be a starting point for us to growing further. Thankyou for the experiences, we are looking forward for the next hackathon.
+## What we learned
+
+The code may be not clean and concise, but we put our utmost into this project, and this is it. This is what we can make in a very short time. We hope this can be a starting point for us to grow further. Thank you for the experiences, we are looking forward for the next hackathon.
 
 ## What's next for MAKU (Makanan Ku)
 
